@@ -15,26 +15,12 @@ new_df = df[bool_list]
 # Save modifed dataframe to csv
 new_df.to_csv("filtered_total_access.csv", index=False)
 
-"""
-# read in text file line by line
-file1 = open(logfilename, 'r') 
-requests = file1.readlines()
-
-
-# count all requests with sreg ip
-sreg_requests = 0
-replica_requests = 0
-for req in requests:
-    if req.startswith('35'):
-        sreg_requests += 1
-    elif req.startswith('34'):
-        replica_requests += 1
-
-print('sreg reqs' + str(sreg_requests))
-print('replica reqs' + str(replica_requests))
-"""
-
-# count all requests with replica ip
+# Create plot from latency values and show
+ax = df['latency'].plot(kind='hist', bins=1000, grid=False, rwidth=0.9, xlim=(0,0.5)) 
+ax.set_xlabel('Latency (s)')
+ax.set_ylabel('Count')
+ax.set_title('doWork Latency Time vs Count of Latencies')
+plt.show()
 
 
 """

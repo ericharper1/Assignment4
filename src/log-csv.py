@@ -29,12 +29,12 @@ with open(csv_file_name, 'w') as out:
 
     for line in file:
         m = pattern.findall(line)
-        n = ''
+        n = ""
         for i in m:
             for j in i:
                 j = j.replace(",", " ")
-                n += "'" + j + "'"
+                n += "\"" + j + "\""
                 if j != i[-1]:
                     n += ","
         if n:
-            f.write(n + '\n')
+            f.write(n + "\n")
