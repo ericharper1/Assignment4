@@ -6,11 +6,20 @@ import os
 logfilename = 'total_access.csv'
 
 print(f"reading file: {logfilename}")
-df = pd.read_csv(logfilename, low_memory=False, parse_dates=['timestamp'])
+df = pd.read_csv(logfilename, low_memory=False, parse_dates=['time'])
 
+# filter out records referring to the '/doWork/' path
+bool_list = df.url.str.contains("doWork")
+new_df = df[bool_list]
+
+# Save modifed dataframe to csv
+new_df.to_csv("filtered_total_access.csv", index=False)
+
+"""
 # read in text file line by line
 file1 = open(logfilename, 'r') 
 requests = file1.readlines()
+
 
 # count all requests with sreg ip
 sreg_requests = 0
@@ -23,10 +32,9 @@ for req in requests:
 
 print('sreg reqs' + str(sreg_requests))
 print('replica reqs' + str(replica_requests))
-
+"""
 
 # count all requests with replica ip
-
 
 
 """
