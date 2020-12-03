@@ -3,9 +3,10 @@ from datetime import datetime
 import matplotlib.pyplot as plt
 import os
 
-logfilename = 'total_access.log'
+logfilename = 'total_access.csv'
 
 print(f"reading file: {logfilename}")
+df = pd.read_csv(logfilename, low_memory=False, parse_dates=['timestamp'])
 
 # read in text file line by line
 file1 = open(logfilename, 'r') 
