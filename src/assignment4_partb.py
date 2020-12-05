@@ -1,6 +1,8 @@
 import pandas as pd
+import numpy as np
 from datetime import datetime
 import matplotlib.pyplot as plt
+import scipy as sp
 import os
 
 logfilename = 'total_access.csv'
@@ -15,11 +17,16 @@ new_df = df[bool_list]
 # Save modifed dataframe to csv
 new_df.to_csv("filtered_total_access.csv", index=False)
 
+# Find std dev.
+print(df['latency'].std())
+print(df['latency'].mean())
+
 # Create plot from latency values and show
-ax = df['latency'].plot(kind='hist', bins=1000, grid=False, rwidth=0.9, xlim=(0,0.5)) 
+ax = df['latency'].plot(kind='hist', bins=20000, grid=False, rwidth=0.75, xlim=(0,0.5)) 
 ax.set_xlabel('Latency (s)')
 ax.set_ylabel('Count')
 ax.set_title('doWork Latency Time vs Count of Latencies')
+plt.xticks(np.arange(0, 0.5, .025), fontsize=8)
 plt.show()
 
 
